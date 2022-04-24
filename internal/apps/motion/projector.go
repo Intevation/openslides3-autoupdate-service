@@ -79,6 +79,11 @@ func Slide() projector.CallableFunc {
 		}
 		showMetaBox = jsonNot(showMetaBox)
 
+		var metatableIsTransparent json.RawMessage
+		if err := ds.ConfigValue("motions_metatable_is_transparent", &metatableIsTransparent); err != nil {
+			return nil, debug.Error("getting motions_metatable_is_transparent: %w", err)
+		}
+
 		var lineLength json.RawMessage
 		if err := ds.ConfigValue("motions_line_length", &lineLength); err != nil {
 			return nil, debug.Error("getting motions_line_length: %w", err)
@@ -110,6 +115,7 @@ func Slide() projector.CallableFunc {
 			"change_recommendations": changeRecommendations,
 			"amendments":             amendments,
 			"show_meta_box":          showMetaBox,
+			"metatable_is_transparent": metatableIsTransparent,
 			"line_length":            lineLength,
 			"preamble":               preamble,
 			"line_numbering_mode":    lineNumberingMode,
