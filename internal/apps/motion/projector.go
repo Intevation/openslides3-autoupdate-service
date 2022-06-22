@@ -114,6 +114,7 @@ func Slide() projector.CallableFunc {
 			"preamble":               preamble,
 			"line_numbering_mode":    lineNumberingMode,
 			"show_referring_motions": jsonBool(showReferingMotions),
+			"start_line_number":      m.StartLineNumber,
 		}
 
 		if showReferingMotions {
@@ -514,6 +515,7 @@ func slideBaseMotion(ds projector.Datastore, m *motion) (json.RawMessage, error)
 		Identifier json.RawMessage `json:"identifier"`
 		Title      json.RawMessage `json:"title"`
 		Text       json.RawMessage `json:"text"`
+		StartLineNumber json.RawMessage `json:"start_line_number"`
 	}
 	if err := ds.Get("motions/motion", pid, &parent); err != nil {
 		return nil, debug.Error("getting parent motion: %w", err)

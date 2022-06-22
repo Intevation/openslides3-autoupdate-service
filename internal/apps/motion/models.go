@@ -25,4 +25,5 @@ type motion struct {
 		UserID int `json:"user_id"`
 		Weight int `json:"weight"`
 	} `json:"submitters"`
+	StartLineNumber         json.RawMessage        `json:"start_line_number"`
 }
